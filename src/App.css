@@ -12,9 +12,17 @@
   
 }
 .square{
+  display: flex;
   min-width: 100px;
   min-height: 100px;
   margin-bottom: 5px;
   border: 1px black solid;
   border-radius: 5px;
+  font-size:50px;
+  justify-content: center;
+  
+}
+.turn{
+  display: flex;
+  margin: 10px;
 }
