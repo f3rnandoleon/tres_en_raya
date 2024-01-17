@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+const TURNS = {
+  X: 'x',
+  O: 'o'
+}
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+ const Square=({children,updateBoard,index})=>{
+  return(
+    <div className="square">
+      {children}
     </div>
+  )
+ }
+function App() {
+  const board=Array(9).fill(null)
+  return (
+    <main className="container">
+      <h1>TRES EN RAYA</h1>
+      <section className="juego"> 
+        {
+          board.map((value, index) => {
+            return(
+              <Square
+                key={index}
+                index={index}
+              >
+                {index}
+              </Square>  
+            )
+          })
+        }
+      </section>
+    </main>
   );
 }
 
