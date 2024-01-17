@@ -1,3 +1,4 @@
+import './App.css'
 const TURNS = {
   X: 'x',
   O: 'o'
@@ -24,7 +25,7 @@ function App() {
                 key={index}
                 index={index}
               >
-                {index}
+                
               </Square>  
             )
           })
