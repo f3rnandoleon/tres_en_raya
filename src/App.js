@@ -27,6 +27,7 @@ function App() {
     const newBoard=[...board]
     newBoard[index] =turn
     setBoard(newBoard)
+
     const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X
     setTurn(newTurn)
   }
@@ -37,7 +38,7 @@ function App() {
       <section className="juego"> 
         {
           board.map((value, index) => {
-            return(
+            return(   
               <Square
                 key={index}
                 index={index}
