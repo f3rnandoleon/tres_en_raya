@@ -44,31 +44,42 @@ function App() {
           boardToChech[a] === boardToChech[c] 
           
         ) {
-          return board[a]
+          return boardToChech[a]
         }
       
     }
     return null
   }
-
-  const updateBoard = (index) => { 
-if(board[index] || winner) return 
-
-    const newBoard=[...board]
-    newBoard[index] =turn
-    setBoard(newBoard)
-
-    const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X
-    setTurn(newTurn) 
-    const newWinner= checkWinner(newBoard)
-    if(newWinner){      
-      seTWinner(newWinner)
-    }
+  const resetGame=()=>{
+    setBoard(Array(9).fill(null))
+    setTurn(TURNS.X)
+    seTWinner(null)
   }
+
+  const checkEndGame=(newBoard)=>{
+    return newBoard.every((square)=>square !==null)
+  }
+  const updateBoard = (index) => { 
+    if(board[index] || winner) return 
+
+      const newBoard=[...board]
+      newBoard[index] =turn
+      setBoard(newBoard)
+
+      const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X
+      setTurn(newTurn) 
+      const newWinner= checkWinner(newBoard)
+      if(newWinner){      
+        seTWinner(newWinner)
+      }else if(checkEndGame(newBoard)){
+        seTWinner(false)
+      }
+    }
 
   return (
     <main className="container">
       <h1>TRES EN RAYA</h1>
+      <button className='' onClick={resetGame}>Reset</button>
       <section className="juego"> 
         {
           board.map((value, index) => {
@@ -109,7 +120,7 @@ if(board[index] || winner) return
               </header>
 
               <footer>
-                <button >Empezar de Nuevo</button>
+                <button onClick={resetGame}>Empezar de Nuevo</button>
               </footer>
             </div>
           </section>
