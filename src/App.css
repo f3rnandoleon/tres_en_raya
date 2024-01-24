@@ -2,7 +2,7 @@
   display: flex;
   flex-direction:column;
   align-items: center;
-  
+  font-size: large;
 }
 .juego{
   display: flex;
@@ -13,16 +13,45 @@
 }
 .square{
   display: flex;
-  min-width: 100px;
-  min-height: 100px;
+  width: 100px;
+  height: 100px;
   margin-bottom: 5px;
   border: 1px black solid;
   border-radius: 5px;
   font-size:50px;
   justify-content: center;
-
+    
 }
 .turn{
   display: flex;
   margin: 10px;
+}
+.winner{
+
+  position:absolute;
+  top: 25%;
+  width: 350px;
+  background-color: black;
+  color: white;
+
+}
+.texto{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+button{
+  background-color: rgb(177, 177, 177);
+  margin-bottom: 24px;
+  color: aliceblue;
+  border: 1px solid black;
+  padding: 12px;
+  font-size: large;
+  border-radius: 10px;
+
+}
+button:hover{
+  background-color: blue;
+  cursor: pointer;
 }

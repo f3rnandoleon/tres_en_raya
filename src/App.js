@@ -6,9 +6,9 @@ const TURNS = {
 }
 
 
- const Square=({children,isSelected,updateBoard,index})=>{
+const Square=({children,isSelected,updateBoard,index})=>{
   const className = `square ${isSelected ? 'is-selected' : ''}`
-
+  
   const handleClick = () =>{
     updateBoard(index)
   }
@@ -60,6 +60,7 @@ function App() {
     return newBoard.every((square)=>square !==null)
   }
   const updateBoard = (index) => { 
+    console.log(board[index])
     if(board[index] || winner) return 
 
       const newBoard=[...board]
