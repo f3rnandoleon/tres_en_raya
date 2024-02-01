@@ -1,34 +1,9 @@
 import { useState } from 'react'
 import './App.css'
-const TURNS = {
-  X: 'x',
-  O: 'o'
-}
-
-
-const Square=({children,isSelected,updateBoard,index})=>{
-  const className = `square ${isSelected ? 'is-selected' : ''}`
-  
-  const handleClick = () =>{
-    updateBoard(index)
-  }
-
-  return(
-    <div onClick={handleClick} className={className}>
-      {children}
-    </div>
-  )
- }
-const WINNER_COMBOS=[
-  [0,1,2],
-  [3,4,5],
-  [6,7,8],
-  [0,3,6],
-  [1,4,7],
-  [2,5,8],
-  [0,4,8],
-  [2,4,6]
-]
+import { Square } from './componentes/Square'
+import confetti from 'canvas-confetti'
+import {TURNS,WINNER_COMBOS} from './constantes'
+import { WinnerBox } from './componentes/WinnerBox'
 
 function App() {
   const [board,setBoard]=useState(Array(9).fill(null))
@@ -69,8 +44,11 @@ function App() {
 
       const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X
       setTurn(newTurn) 
+      window.localStorage.setItem('board',JSON.stringify(board))
+      window.localStorage.setItem('turn',turn)
       const newWinner= checkWinner(newBoard)
-      if(newWinner){      
+      if(newWinner){   
+        confetti()   
         seTWinner(newWinner)
       }else if(checkEndGame(newBoard)){
         seTWinner(false)
@@ -105,28 +83,7 @@ function App() {
         </Square>
       </section>
 
-      {
-        winner !== null && (
-          <section className='winner'>
-            <div className='texto'>
-              <h2>
-                {
-                  winner ===false
-                    ? 'Empate'
-                    : 'Gano'
-                }
-              </h2>
-              <header className='win'>
-                {winner && <Square>{winner}</Square>}
-              </header>
-
-              <footer>
-                <button onClick={resetGame}>Empezar de Nuevo</button>
-              </footer>
-            </div>
-          </section>
-        )
-      }
+      <WinnerBox resetGame={resetGame} winner={winner}></WinnerBox>
 
     </main>
   );
