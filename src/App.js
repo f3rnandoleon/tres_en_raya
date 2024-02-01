@@ -4,36 +4,20 @@ import { Square } from './componentes/Square'
 import confetti from 'canvas-confetti'
 import {TURNS,WINNER_COMBOS} from './constantes'
 import { WinnerBox } from './componentes/WinnerBox'
-
+import { checkWinner,checkEndGame } from './logic/functions'
 function App() {
   const [board,setBoard]=useState(Array(9).fill(null))
   const [turn,setTurn]=useState(TURNS.X)
   const [winner,seTWinner]=useState(null)
 
-  const checkWinner=(boardToChech)=>{
-    for (const combo of WINNER_COMBOS){
-        const [a,b,c] = combo
-        if(
-          boardToChech[a] && 
-          boardToChech[a] === boardToChech[b] && 
-          boardToChech[a] === boardToChech[c] 
-          
-        ) {
-          return boardToChech[a]
-        }
-      
-    }
-    return null
-  }
+ 
   const resetGame=()=>{
     setBoard(Array(9).fill(null))
     setTurn(TURNS.X)
     seTWinner(null)
   }
 
-  const checkEndGame=(newBoard)=>{
-    return newBoard.every((square)=>square !==null)
-  }
+  
   const updateBoard = (index) => { 
     console.log(board[index])
     if(board[index] || winner) return 
